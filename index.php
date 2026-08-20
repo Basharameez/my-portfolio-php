@@ -258,9 +258,6 @@ $architectureLayers = [
     <!-- Tailwind CSS Play CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Lenis Smooth Scrolling CDN -->
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-    
     <script>
         tailwind.config = {
             theme: {
@@ -565,8 +562,8 @@ $architectureLayers = [
             <!-- Scroll Runway -->
             <div class="scroll-stack-runway">
                 <div class="scroll-stack-inner">
-                <?php foreach ($projects as $project): ?>
-                    <div class="scroll-stack-card w-full max-w-5xl mx-auto bg-[#0E0C0A] border border-[#8C6D4F]/25 rounded-2xl p-8 sm:p-12 shadow-[0_25px_70px_rgba(0,0,0,0.98)] overflow-hidden relative group">
+                <?php foreach ($projects as $index => $project): ?>
+                    <div class="scroll-stack-card sticky w-full max-w-5xl mx-auto bg-[#0E0C0A] border border-[#8C6D4F]/25 rounded-2xl p-8 sm:p-12 shadow-[0_25px_70px_rgba(0,0,0,0.98)] overflow-hidden group mb-5" style="top: calc(15vh + <?php echo $index * 28; ?>px); z-index: <?php echo $index + 1; ?>;">
                         
                         <!-- Top Gold Border Light Flare -->
                         <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent"></div>
@@ -1457,42 +1454,7 @@ $architectureLayers = [
         // 3. ScrollStack Cards pinning transitions (Lenis smooth scroll synced)
         const cards = Array.from(document.querySelectorAll('.scroll-stack-card'));
         if (cards.length) {
-            const itemDistance = 20;
-            const itemScale = 0.035;
-            const itemStackDistance = 28;
-            const stackPosition = '15%';
-            const scaleEndPosition = '6%';
-            const baseScale = 0.88;
-
-            // Apply initial styles
-            cards.forEach((card, i) => {
-                card.style.zIndex = `${i + 1}`;
-                if (i < cards.length - 1) {
-                    card.style.marginBottom = `${itemDistance}px`;
-                }
-                card.style.willChange = 'transform, filter';
-                card.style.transformOrigin = 'top center';
-                card.style.backfaceVisibility = 'hidden';
-                card.style.transform = 'translateZ(0)';
-            });
-
-            // Initialize Lenis
-            const lenis = new Lenis({
-                duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                smoothWheel: true,
-                wheelMultiplier: 1,
-                touchMultiplier: 2,
-            });
-
-            function raf(time) {
-                lenis.raf(time);
-                requestAnimationFrame(raf);
-            }
-            requestAnimationFrame(raf);
-
             let initialTops = [];
-            let endElementTop = 0;
             
             function recalculateTops() {
                 // Temporarily clear transforms to get natural positions
@@ -1503,12 +1465,6 @@ $architectureLayers = [
                     const rect = card.getBoundingClientRect();
                     return rect.top + window.scrollY;
                 });
-
-                const endElement = document.querySelector('.scroll-stack-end');
-                if (endElement) {
-                    const rect = endElement.getBoundingClientRect();
-                    endElementTop = rect.top + window.scrollY;
-                }
                 
                 // Restore transforms
                 cards.forEach((c, idx) => c.style.transform = originalTransforms[idx]);
@@ -1517,71 +1473,48 @@ $architectureLayers = [
             recalculateTops();
             window.addEventListener('resize', recalculateTops);
 
-            const lastTransforms = new Map();
-
-            function calculateProgress(scrollTop, start, end) {
-                if (scrollTop < start) return 0;
-                if (scrollTop > end) return 1;
-                return (scrollTop - start) / (end - start);
-            }
-
-            function parsePercentage(value, containerHeight) {
-                if (typeof value === 'string' && value.includes('%')) {
-                    return (parseFloat(value) / 100) * containerHeight;
-                }
-                return typeof value === 'number' ? value : parseFloat(value);
-            }
-
             function updateCardTransforms() {
                 const scrollTop = window.scrollY;
                 const containerHeight = window.innerHeight;
-
-                const stackPositionPx = parsePercentage(stackPosition, containerHeight);
-                const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
+                const stackPositionPx = (15 / 100) * containerHeight;
+                const itemStackDistance = 28;
+                const baseScale = 0.88;
+                const itemScale = 0.035;
 
                 cards.forEach((card, i) => {
                     const cardTop = initialTops[i] || 0;
                     const triggerStart = cardTop - stackPositionPx - itemStackDistance * i;
-                    const triggerEnd = cardTop - scaleEndPositionPx;
-                    const pinStart = cardTop - stackPositionPx - itemStackDistance * i;
-                    const pinEnd = endElementTop - containerHeight / 2;
 
-                    const scaleProgress = calculateProgress(scrollTop, triggerStart, triggerEnd);
-                    const targetScale = baseScale + i * itemScale;
-                    const scale = 1 - scaleProgress * (1 - targetScale);
-
-                    let translateY = 0;
-                    const isPinned = scrollTop >= pinStart && scrollTop <= pinEnd;
-
-                    if (isPinned) {
-                        translateY = scrollTop - cardTop + stackPositionPx + itemStackDistance * i;
-                    } else if (scrollTop > pinEnd) {
-                        translateY = pinEnd - cardTop + stackPositionPx + itemStackDistance * i;
-                    }
-
-                    const newTransform = {
-                        translateY: Math.round(translateY * 100) / 100,
-                        scale: Math.round(scale * 1000) / 1000,
-                    };
-
-                    const lastTransform = lastTransforms.get(i);
-                    const hasChanged = !lastTransform ||
-                        Math.abs(lastTransform.translateY - newTransform.translateY) > 0.1 ||
-                        Math.abs(lastTransform.scale - newTransform.scale) > 0.001;
-
-                    if (hasChanged) {
-                        card.style.transform = `translate3d(0, ${newTransform.translateY}px, 0) scale(${newTransform.scale})`;
-                        lastTransforms.set(i, newTransform);
+                    if (scrollTop >= triggerStart) {
+                        const progress = Math.min(Math.max((scrollTop - triggerStart) / 300, 0), 1);
+                        const targetScale = baseScale + i * itemScale;
+                        const scale = 1 - progress * (1 - targetScale);
+                        
+                        card.style.transform = `scale(${scale})`;
+                        card.style.filter = `brightness(${1 - (progress * 0.25)})`;
+                    } else {
+                        card.style.transform = 'scale(1)';
+                        card.style.filter = 'brightness(1)';
                     }
                 });
             }
 
-            lenis.on('scroll', updateCardTransforms);
+            window.addEventListener('scroll', updateCardTransforms, { passive: true });
 
             window.addEventListener('load', () => {
                 recalculateTops();
                 updateCardTransforms();
             });
+            
+            // Re-check heights at intervals to handle late image rendering
+            setTimeout(() => {
+                recalculateTops();
+                updateCardTransforms();
+            }, 500);
+            setTimeout(() => {
+                recalculateTops();
+                updateCardTransforms();
+            }, 1500);
         }
 
         // 4. Intelligence Nodes panel selector
