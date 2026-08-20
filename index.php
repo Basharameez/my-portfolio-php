@@ -1492,6 +1492,7 @@ $architectureLayers = [
             requestAnimationFrame(raf);
 
             let initialTops = [];
+            let endElementTop = 0;
             
             function recalculateTops() {
                 // Temporarily clear transforms to get natural positions
@@ -1502,6 +1503,12 @@ $architectureLayers = [
                     const rect = card.getBoundingClientRect();
                     return rect.top + window.scrollY;
                 });
+
+                const endElement = document.querySelector('.scroll-stack-end');
+                if (endElement) {
+                    const rect = endElement.getBoundingClientRect();
+                    endElementTop = rect.top + window.scrollY;
+                }
                 
                 // Restore transforms
                 cards.forEach((c, idx) => c.style.transform = originalTransforms[idx]);
@@ -1531,9 +1538,6 @@ $architectureLayers = [
 
                 const stackPositionPx = parsePercentage(stackPosition, containerHeight);
                 const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
-
-                const endElement = document.querySelector('.scroll-stack-end');
-                const endElementTop = endElement ? (endElement.getBoundingClientRect().top + window.scrollY) : 0;
 
                 cards.forEach((card, i) => {
                     const cardTop = initialTops[i] || 0;
@@ -1573,7 +1577,6 @@ $architectureLayers = [
             }
 
             lenis.on('scroll', updateCardTransforms);
-            window.addEventListener('scroll', updateCardTransforms);
 
             window.addEventListener('load', () => {
                 recalculateTops();
