@@ -258,6 +258,9 @@ $architectureLayers = [
     <!-- Tailwind CSS Play CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Lenis Smooth Scrolling CDN -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    
     <script>
         tailwind.config = {
             theme: {
@@ -290,12 +293,28 @@ $architectureLayers = [
         .scroll-stack-runway {
             position: relative;
             width: 100%;
+            overflow: visible;
+        }
+        .scroll-stack-inner {
+            position: relative;
+            width: 100%;
+            padding-top: 4vh;
+            padding-bottom: 50vh; /* runway space for cards to stack */
         }
         .scroll-stack-card {
-            position: sticky;
-            top: 15vh;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
             transform-origin: top center;
-            transition: transform 0.1s ease-out, filter 0.2s ease;
+            will-change: transform, filter;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+        .scroll-stack-end {
+            width: 100%;
+            height: 1px;
         }
         /* Custom scrollbar */
         ::-webkit-scrollbar {
@@ -544,7 +563,8 @@ $architectureLayers = [
             </div>
 
             <!-- Scroll Runway -->
-            <div class="scroll-stack-runway flex flex-col gap-[20vh] pb-[10vh]">
+            <div class="scroll-stack-runway">
+                <div class="scroll-stack-inner">
                 <?php foreach ($projects as $project): ?>
                     <div class="scroll-stack-card w-full max-w-5xl mx-auto bg-[#0E0C0A] border border-[#8C6D4F]/25 rounded-2xl p-8 sm:p-12 shadow-[0_25px_70px_rgba(0,0,0,0.98)] overflow-hidden relative group">
                         
@@ -655,6 +675,8 @@ $architectureLayers = [
                         </div>
                     </div>
                 <?php endforeach; ?>
+                    <div class="scroll-stack-end"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -1432,36 +1454,132 @@ $architectureLayers = [
             });
         }
 
-        // 3. ScrollStack Cards pinning transitions
-        window.addEventListener('scroll', () => {
-            const cards = document.querySelectorAll('.scroll-stack-card');
-            const runway = document.querySelector('.scroll-stack-runway');
-            if (!runway) return;
-            
-            const scrollY = window.scrollY;
-            
-            cards.forEach((card, index) => {
-                const rect = card.getBoundingClientRect();
-                const cardTop = rect.top;
-                const viewportTopOffset = window.innerHeight * 0.15;
-                
-                if (cardTop <= viewportTopOffset + 5) {
-                    // Card is pinned: apply scaling and fade out as scroll deepens
-                    const rawProgress = (viewportTopOffset - cardTop) / 300; // normalized progress
-                    const progress = Math.min(Math.max(rawProgress, 0), 1);
-                    
-                    const scale = 1 - (progress * 0.05);
-                    const opacity = 1 - (progress * 0.1);
-                    const rotate = progress * -1.5;
-                    
-                    card.style.transform = `scale(${scale}) rotate(${rotate}deg)`;
-                    card.style.filter = `brightness(${1 - (progress * 0.25)})`;
-                } else {
-                    card.style.transform = 'scale(1) rotate(0deg)';
-                    card.style.filter = 'brightness(1)';
+        // 3. ScrollStack Cards pinning transitions (Lenis smooth scroll synced)
+        const cards = Array.from(document.querySelectorAll('.scroll-stack-card'));
+        if (cards.length) {
+            const itemDistance = 20;
+            const itemScale = 0.035;
+            const itemStackDistance = 28;
+            const stackPosition = '15%';
+            const scaleEndPosition = '6%';
+            const baseScale = 0.88;
+
+            // Apply initial styles
+            cards.forEach((card, i) => {
+                card.style.zIndex = `${i + 1}`;
+                if (i < cards.length - 1) {
+                    card.style.marginBottom = `${itemDistance}px`;
                 }
+                card.style.willChange = 'transform, filter';
+                card.style.transformOrigin = 'top center';
+                card.style.backfaceVisibility = 'hidden';
+                card.style.transform = 'translateZ(0)';
             });
-        });
+
+            // Initialize Lenis
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smoothWheel: true,
+                wheelMultiplier: 1,
+                touchMultiplier: 2,
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+
+            let initialTops = [];
+            
+            function recalculateTops() {
+                // Temporarily clear transforms to get natural positions
+                const originalTransforms = cards.map(c => c.style.transform);
+                cards.forEach(c => c.style.transform = 'none');
+                
+                initialTops = cards.map(card => {
+                    const rect = card.getBoundingClientRect();
+                    return rect.top + window.scrollY;
+                });
+                
+                // Restore transforms
+                cards.forEach((c, idx) => c.style.transform = originalTransforms[idx]);
+            }
+
+            recalculateTops();
+            window.addEventListener('resize', recalculateTops);
+
+            const lastTransforms = new Map();
+
+            function calculateProgress(scrollTop, start, end) {
+                if (scrollTop < start) return 0;
+                if (scrollTop > end) return 1;
+                return (scrollTop - start) / (end - start);
+            }
+
+            function parsePercentage(value, containerHeight) {
+                if (typeof value === 'string' && value.includes('%')) {
+                    return (parseFloat(value) / 100) * containerHeight;
+                }
+                return typeof value === 'number' ? value : parseFloat(value);
+            }
+
+            function updateCardTransforms() {
+                const scrollTop = window.scrollY;
+                const containerHeight = window.innerHeight;
+
+                const stackPositionPx = parsePercentage(stackPosition, containerHeight);
+                const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
+
+                const endElement = document.querySelector('.scroll-stack-end');
+                const endElementTop = endElement ? (endElement.getBoundingClientRect().top + window.scrollY) : 0;
+
+                cards.forEach((card, i) => {
+                    const cardTop = initialTops[i] || 0;
+                    const triggerStart = cardTop - stackPositionPx - itemStackDistance * i;
+                    const triggerEnd = cardTop - scaleEndPositionPx;
+                    const pinStart = cardTop - stackPositionPx - itemStackDistance * i;
+                    const pinEnd = endElementTop - containerHeight / 2;
+
+                    const scaleProgress = calculateProgress(scrollTop, triggerStart, triggerEnd);
+                    const targetScale = baseScale + i * itemScale;
+                    const scale = 1 - scaleProgress * (1 - targetScale);
+
+                    let translateY = 0;
+                    const isPinned = scrollTop >= pinStart && scrollTop <= pinEnd;
+
+                    if (isPinned) {
+                        translateY = scrollTop - cardTop + stackPositionPx + itemStackDistance * i;
+                    } else if (scrollTop > pinEnd) {
+                        translateY = pinEnd - cardTop + stackPositionPx + itemStackDistance * i;
+                    }
+
+                    const newTransform = {
+                        translateY: Math.round(translateY * 100) / 100,
+                        scale: Math.round(scale * 1000) / 1000,
+                    };
+
+                    const lastTransform = lastTransforms.get(i);
+                    const hasChanged = !lastTransform ||
+                        Math.abs(lastTransform.translateY - newTransform.translateY) > 0.1 ||
+                        Math.abs(lastTransform.scale - newTransform.scale) > 0.001;
+
+                    if (hasChanged) {
+                        card.style.transform = `translate3d(0, ${newTransform.translateY}px, 0) scale(${newTransform.scale})`;
+                        lastTransforms.set(i, newTransform);
+                    }
+                });
+            }
+
+            lenis.on('scroll', updateCardTransforms);
+            window.addEventListener('scroll', updateCardTransforms);
+
+            window.addEventListener('load', () => {
+                recalculateTops();
+                updateCardTransforms();
+            });
+        }
 
         // 4. Intelligence Nodes panel selector
         const genAINodeData = [
