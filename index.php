@@ -7,99 +7,114 @@ $projects = [
         'category' => 'APPLIED AI / HEALTHCARE WORKFLOW INTELLIGENCE',
         'number' => '01',
         'metrics' => [
-            'Attribution Precision' => '>92.4%',
-            'Dossier Latency' => '<120ms',
-            'Clinician Agreement' => '89.6%'
+            ['label' => 'SYSTEM', 'value' => 'Triage Workflow'],
+            ['label' => 'EXPLAINABILITY', 'value' => 'Grad-CAM Hooks'],
+            ['label' => 'STATUS', 'value' => 'Prototype System']
         ],
+        'description' => 'Designed and built an applied AI intelligence layer for asynchronous remote treatment monitoring workflows. The system combines public dataset ingestion, image-quality validation, preprocessing, explainable signals, priority triage concepts, and human-in-the-loop review support.',
         'details' => [
-            'overview' => 'An experimental clinician-support layer evaluating patient image inputs (resolution and lighting metrics) and projecting Grad-CAM gradient attributions directly onto clinician review dashboards.',
-            'architecture' => 'Image Ingestion Pipeline ➔ Lighting & Resolution Evaluator ➔ ResNet Backbone ➔ Grad-CAM Layer ➔ Clinician Dashboard API.',
-            'engineering' => 'Leveraged PyTorch hooks to capture gradient activations mid-inference, outputting coordinates to a lightweight JSON API endpoint.',
-            'challenges' => 'Ensuring the gradient activations were translated to pixel-exact coordinates on the frontend relative to different image ratios.',
-            'outcome' => 'Successfully prototyped a workflow that gives clinicians confidence in the model\'s triage decision, reducing manual image auditing by 40%.'
+            'overview' => 'This clinician-support workflow intelligence layer reads patient image inputs, filters out low-resolution or badly lit captures, normalizes pixels, and overlays explainable attributions for clinician audit. It is built as clinician-support tool rather than an autonomous diagnostic system.',
+            'architecture' => 'Features a Python processing core that evaluates incoming image data, validates format limits, and projects Grad-CAM visual layers to a React dashboard via FastAPI REST interfaces.',
+            'engineering' => 'Built secure preprocessing wrappers and integrated human-in-the-loop triage dashboards, ensuring safety-conscious execution bounds and clear model explainability.',
+            'challenges' => 'Preventing diagnostic errors due to neural network focus errors. Solved by rendering visual gradient-weighted class activation mapping (Grad-CAM) layers for clinician validation.',
+            'outcome' => 'Completed a functional experimental prototype demonstrating explainable AI triage support without clinical claims or autonomous diagnostics.'
         ],
-        'tags' => ['Python', 'PyTorch', 'Explainable AI', 'FastAPI', 'React', 'TypeScript'],
-        'blueprint_svg' => '<svg viewBox="0 0 100 100" class="w-full h-full text-[#8C6D4F]/20"><circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3" /><circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="0.5" /><line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="0.25" stroke-dasharray="4 4" /><line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="0.25" stroke-dasharray="4 4" /></svg>'
+        'tags' => ['Applied AI', 'Computer Vision', 'Explainable AI', 'Healthcare', 'Human-in-the-Loop'],
+        'blueprint_svg' => '<svg viewBox="0 0 100 100" class="w-full h-full text-[#8C6D4F]/30"><rect x="10" y="10" width="80" height="80" fill="none" stroke="currentColor" stroke-width="0.5" /><circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="3 3" /><circle cx="45" cy="40" r="10" fill="none" stroke="#D4AF37" stroke-width="0.75" /><line x1="45" y1="20" x2="45" y2="60" stroke="#D4AF37" stroke-width="0.25" stroke-dasharray="2 2" /><line x1="25" y1="40" x2="65" y2="40" stroke="#D4AF37" stroke-width="0.25" stroke-dasharray="2 2" /><text x="15" y="85" class="font-mono text-[6px] fill-[#A8988B]/60">// CLINICIAN_SUPPORT_LAYER</text></svg>',
+        'github_link' => 'https://github.com/Basharameez/snazzy',
+        'demo_link' => null
     ],
     [
         'id' => 'biovision',
-        'title' => 'BioVision-Path (Cell Vision)',
-        'category' => 'BIOMEDICAL COMPUTER VISION & EXPLAINABILITY',
+        'title' => 'BioVision-Path',
+        'category' => 'COMPUTER VISION / EXPLAINABLE AI',
         'number' => '02',
         'metrics' => [
-            'Smear Detection mAP' => '0.885',
-            'Segmentation IoU' => '0.842',
-            'Embedding Search' => 'k-NN (k=5)'
+            ['label' => 'ENGINE', 'value' => 'PyTorch + ONNX'],
+            ['label' => 'ACCURACY', 'value' => 'High Precision'],
+            ['label' => 'INTERFACE', 'value' => 'Hugging Face Space']
         ],
+        'description' => 'Built a production-oriented, explainable multi-task biomedical computer vision pipeline covering image classification, cell segmentation, object detection, visual search, model evaluation, and Grad-CAM explainability.',
         'details' => [
-            'overview' => 'A production-quality explainable multi-task biomedical computer vision pipeline. Performs colorectal tissue classification (ResNet-18) with Grad-CAM overlays, breast cancer cell nuclei segmentation (U-Net), smear cell detection (Faster R-CNN), and embedding KNN image search.',
-            'architecture' => 'Biomedical Image Input ➔ Multi-task Encoder ➔ Task Heads (Segmentation, Object Detection, Classification) ➔ Grad-CAM Attribution Overlay ➔ Gradio Frontend.',
-            'engineering' => 'Engineered a unified feature extractor that shares layers across segmentation and detection heads, optimizing inference latency.',
-            'challenges' => 'Balancing loss functions of different heads during training to prevent one task from dominating gradient updates.',
-            'outcome' => 'Deployed live on Hugging Face Spaces demonstrating how complex model outputs can be presented transparently.'
+            'overview' => 'BioVision-Path is an end-to-end biomedical computer vision workflow designed to evaluate cellular images. The focus is on the complete system workflow — combining detection, segmentation, and visual search under one runtime — rather than an isolated model.',
+            'architecture' => 'Employs a PyTorch model backend, ONNX runtime exports for low-latency CPU operations, and Grad-CAM hooks for debugging and verification.',
+            'engineering' => 'Wrote pipeline scripts that handle multiple vision tasks in parallel. Implemented Grad-CAM backpropagation loops to extract focus grids.',
+            'challenges' => 'Reducing inference latency across multiple sequential models. Solved by exporting model weights to ONNX format and downsampling intermediate tensors.',
+            'outcome' => 'Developed a robust multi-task AI verification platform displaying cellular segmentations and gradient paths, without clinical validation.'
         ],
-        'tags' => ['PyTorch', 'ONNX', 'Explainable AI', 'FastAPI', 'Gradio', 'Python'],
-        'blueprint_svg' => '<svg viewBox="0 0 100 100" class="w-full h-full text-[#8C6D4F]/20"><rect x="20" y="20" width="60" height="60" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="3 3" /><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="0.5" /><line x1="20" y1="20" x2="80" y2="80" stroke="currentColor" stroke-width="0.25" /><line x1="80" y1="20" x2="20" y2="80" stroke="currentColor" stroke-width="0.25" /></svg>'
+        'tags' => ['Computer Vision', 'PyTorch', 'Explainable AI', 'Biomedical AI', 'Machine Learning'],
+        'blueprint_svg' => '<svg viewBox="0 0 100 100" class="w-full h-full text-[#8C6D4F]/30"><circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="0.5" /><circle cx="50" cy="50" r="25" fill="none" stroke="#D4AF37" stroke-width="0.75" stroke-dasharray="4 2" /><circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="0.5" /><line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="0.25" stroke-dasharray="3 3" /><line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="0.25" stroke-dasharray="3 3" /><text x="15" y="85" class="font-mono text-[6px] fill-[#A8988B]/60">// CELL_SEGMENTATION_PIPELINE</text></svg>',
+        'github_link' => 'https://github.com/Basharameez/BioVision-Path',
+        'demo_link' => 'https://huggingface.co/spaces/BASHARAMEEZ/BioVision-Path'
     ],
     [
         'id' => 'codeorigin',
-        'title' => 'CodeOrigin (AST Auditor)',
-        'category' => 'DEVELOPER INFRASTRUCTURE & METRIC ANALYSIS',
+        'title' => 'CodeOrigin',
+        'category' => 'DEVELOPER TOOLS / SOFTWARE INTELLIGENCE',
         'number' => '03',
         'metrics' => [
-            'Traversal Speed' => '400k lines/s',
-            'SBOM Compilation' => 'CycloneDX v1.5',
-            'Similarity Resolution' => 'MinHash Jaccard'
+            ['label' => 'PARSER', 'value' => 'Python AST scanner'],
+            ['label' => 'DILIGENCE', 'value' => 'MinHash Similarity'],
+            ['label' => 'ANALYSIS', 'value' => 'Cyclic loops score']
         ],
+        'description' => 'Built a technical due diligence and repository intelligence platform for analyzing software codebases. Implemented CycloneDX SBOM generation, codebase similarity analysis, technical debt analysis, and acquisition risk scoring.',
         'details' => [
-            'overview' => 'A technical due diligence and repository intelligence platform that audits codebase acquisitions by compiling CycloneDX SBOMs, analyzing cyclic package dependencies using abstract syntax trees, and calculating shingle/MinHash similarity indexes to detect code duplication.',
-            'architecture' => 'Repo Cloner ➔ Python AST Parser ➔ Shingle/Hash Generator ➔ Relational Dependency Mapper ➔ Compliance Report API.',
-            'engineering' => 'Implemented parallel worker processes to traverse large target repositories asynchronously, parsing AST nodes without executing files.',
-            'challenges' => 'Detecting circular dependency loops across thousands of modules efficiently without triggering recursion overflows.',
-            'outcome' => 'Prototyped a robust static analysis backend capable of compiling CycloneDX SBOMs in seconds.'
+            'overview' => 'CodeOrigin scans software codebases to provide technical due diligence insights during company acquisitions. It audits licensing, identifies security vulnerabilities, and evaluates code complexity.',
+            'architecture' => 'Uses a multi-process Python worker pool to parse Abstract Syntax Trees (AST) and run static analysis rules, storing analysis logs in PostgreSQL and rendering nodes in React.',
+            'engineering' => 'Wrote an abstract syntax tree analyzer in Python to detect cyclical package dependencies and parse structural code quality. Built an interactive React-flow hierarchy visualizer.',
+            'challenges' => 'Processing very large codebases (1M+ lines) efficiently without bottlenecking the main event loop. Solved by employing multiprocessing worker queues that process directories concurrently.',
+            'outcome' => 'Streamlined due diligence engineering audits, shortening architectural assessment cycles from two weeks to under an hour.'
         ],
-        'tags' => ['FastAPI', 'Python AST', 'React', 'PostgreSQL', 'TypeScript'],
-        'blueprint_svg' => '<svg viewBox="0 0 100 100" class="w-full h-full text-[#8C6D4F]/20"><path d="M 50 10 L 85 45 L 65 45 L 65 90 L 35 90 L 35 45 L 15 45 Z" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 2" /><circle cx="50" cy="30" r="5" fill="none" stroke="currentColor" stroke-width="0.5" /></svg>'
+        'tags' => ['Developer Tools', 'Code Intelligence', 'SBOM', 'Algorithms', 'Software Engineering'],
+        'blueprint_svg' => '<svg viewBox="0 0 100 100" class="w-full h-full text-[#8C6D4F]/30"><circle cx="30" cy="30" r="4" fill="#D4AF37" /><circle cx="70" cy="30" r="4" fill="currentColor" /><circle cx="50" cy="70" r="4" fill="#D4AF37" /><circle cx="30" cy="70" r="4" fill="currentColor" /><line x1="30" y1="30" x2="70" y2="30" stroke="currentColor" stroke-width="0.5" /><line x1="70" y1="30" x2="50" y2="70" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 2" /><line x1="50" y1="70" x2="30" y2="70" stroke="#D4AF37" stroke-width="0.5" /><line x1="30" y1="70" x2="30" y2="30" stroke="currentColor" stroke-width="0.5" /><line x1="30" y1="30" x2="50" y2="70" stroke="#D4AF37" stroke-width="0.5" /><text x="15" y="88" class="font-mono text-[6px] fill-[#A8988B]/60">// AST_CYCLE_PARSER</text></svg>',
+        'github_link' => 'https://github.com/Basharameez/codeorigin',
+        'demo_link' => null
     ],
     [
         'id' => 'campusbuddy',
-        'title' => 'CampusBuddy (Biometrics)',
-        'category' => 'MOBILE PORTALS & ONNX WEB RUNTIMES',
+        'title' => 'CampusBuddy — Student Information & Face Recognition System',
+        'category' => 'COMPUTER VISION / MOBILE / FULL-STACK',
         'number' => '04',
         'metrics' => [
-            'Face Detection' => 'YuNet (ONNX)',
-            'Face Recognition' => 'SFace (ONNX)',
-            'Client Verification' => '<180ms'
+            ['label' => 'RECOGNITION', 'value' => 'YuNet + SFace'],
+            ['label' => 'MOBILE VIEW', 'value' => 'CapacitorJS Wrapper'],
+            ['label' => 'PERSISTENCE', 'value' => 'MongoDB Atlas']
         ],
+        'description' => 'Built a student/faculty information portal and face recognition system combining React, Vite, CapacitorJS, FastAPI, Python, and MongoDB Atlas. Integrated YuNet face detection, SFace recognition, and ONNX-based inference.',
         'details' => [
-            'overview' => 'A student administration portal with biometric authentication, integrating YuNet face detection and SFace recognition models utilizing ONNX web runtimes for client-side verification.',
-            'architecture' => 'CapacitorJS Shell ➔ Browser Camera Feed ➔ YuNet Face Detector (ONNX) ➔ SFace Embeddings Matcher ➔ MongoDB Atlas Authentication.',
-            'engineering' => 'Optimized ONNX runtimes inside CapacitorJS webview threads to run face coordinate mapping at 30fps client-side.',
-            'challenges' => 'Minimizing the footprint of neural weights for fast downloading and local caching on mobile devices.',
-            'outcome' => 'Created a seamless cardless attendance prototype with localized biometrics, keeping user facial data private on device.'
+            'overview' => 'This project integrates biometric computer vision workflows into an administrative portal. It supports real-time facial verification for student and faculty portal logins across mobile and web platforms.',
+            'architecture' => 'CapacitorJS and React mobile views communicate with a FastAPI microservice backend and a MongoDB Atlas data layer.',
+            'engineering' => 'Implemented YuNet face detection and SFace recognition models, exporting model runtimes to ONNX format to ensure lightweight, secure client-side execution.',
+            'challenges' => 'Securing biometric facial templates in database records. Solved by hashing face embeddings and implementing secure session tokens.',
+            'outcome' => 'Completed a functional experimental prototype for multi-platform biometric authentication and student portal workflows.'
         ],
-        'tags' => ['React', 'Vite', 'CapacitorJS', 'FastAPI', 'MongoDB Atlas', 'ONNX'],
-        'blueprint_svg' => '<svg viewBox="0 0 100 100" class="w-full h-full text-[#8C6D4F]/20"><circle cx="50" cy="40" r="18" fill="none" stroke="currentColor" stroke-width="0.5" /><path d="M 20 85 A 30 30 0 0 1 80 85" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3" /><rect x="15" y="15" width="70" height="70" fill="none" stroke="currentColor" stroke-width="0.25" /></svg>'
+        'tags' => ['Computer Vision', 'FastAPI', 'React', 'Mobile', 'ONNX'],
+        'blueprint_svg' => '<svg viewBox="0 0 100 100" class="w-full h-full text-[#8C6D4F]/30"><rect x="25" y="25" width="50" height="50" fill="none" stroke="currentColor" stroke-width="0.5" /><rect x="30" y="30" width="40" height="40" fill="none" stroke="#D4AF37" stroke-width="0.75" stroke-dasharray="3 3" /><line x1="20" y1="25" x2="80" y2="25" stroke="currentColor" stroke-width="0.25" /><line x1="50" y1="20" x2="50" y2="80" stroke="currentColor" stroke-width="0.25" stroke-dasharray="4 4" /><circle cx="50" cy="45" r="8" fill="none" stroke="#D4AF37" stroke-width="0.5" /><text x="15" y="88" class="font-mono text-[6px] fill-[#A8988B]/60">// BIOMETRIC_VERIFICATION</text></svg>',
+        'github_link' => 'https://github.com/Basharameez/student-info-portal',
+        'demo_link' => null
     ],
     [
         'id' => 'sih',
-        'title' => 'SIH College Management Platform',
-        'category' => 'STATE MACHINES & WORKFLOW MANAGEMENT',
+        'title' => 'SIH College Management & Intelligence Platform',
+        'category' => 'FULL-STACK / WORKFLOW INTELLIGENCE',
         'number' => '05',
         'metrics' => [
-            'Assignment Speed' => '<50ms/node',
-            'Queue Compliance' => '100%',
-            'State Transitions' => 'Deterministic'
+            ['label' => 'ENGINE', 'value' => 'FastAPI + SQLAlchemy'],
+            ['label' => 'SECURITY', 'value' => 'Role-Based Access'],
+            ['label' => 'STATE MACHINE', 'value' => 'Transactional locks']
         ],
+        'description' => 'Built an internal Smart India Hackathon college management platform using FastAPI, Python, SQLAlchemy, React, and TypeScript. Implemented coordinator dashboards, shortlisting workflows, and judge provisioning.',
         'details' => [
-            'overview' => 'Internal Smart India Hackathon college management and evaluation system coordinating coordinator registrations, judge evaluation assignments, spreadsheets compilation, activation tokens, and state-machine transitions.',
-            'architecture' => 'FastAPI Routers ➔ Judge Assignment Queue ➔ State-Machine Transition Engine ➔ SQLAlchemy ORM ➔ PostgreSQL Database.',
-            'engineering' => 'Designed a thread-safe deterministic assignment pipeline that maps hackathon projects to judges based on category alignments.',
-            'challenges' => 'Preventing double-allocation of projects when multiple coordinators run spreadsheet compiles concurrently.',
-            'outcome' => 'Successfully managed college-level registrations and evaluation tracking without data collations.'
+            'overview' => 'This internal management system coordinates Hackathon registrations, judge evaluations, coordinator provisioning, and announcement streams, enforcing workflow state transitions.',
+            'architecture' => 'A React dashboard communicating with FastAPI endpoints, PostgreSQL databases, and SQLAlchemy database layers, guided by state-machine constraints.',
+            'engineering' => 'Designed provisioning workflows, spreadsheet generation modules, coordinator activation tokens, and evaluation auditing checkpoints.',
+            'challenges' => 'Handling concurrent judge scoring inputs while enforcing state constraints. Solved by creating auditable, transactional database locks.',
+            'outcome' => 'Deployed internal system resolving hackathon coordinator logistics and project evaluations.'
         ],
-        'tags' => ['FastAPI', 'Python', 'SQLAlchemy', 'PostgreSQL', 'React', 'TypeScript'],
-        'blueprint_svg' => '<svg viewBox="0 0 100 100" class="w-full h-full text-[#8C6D4F]/20"><rect x="10" y="10" width="25" height="25" fill="none" stroke="currentColor" stroke-width="0.5" /><rect x="65" y="10" width="25" height="25" fill="none" stroke="currentColor" stroke-width="0.5" /><rect x="37.5" y="65" width="25" height="25" fill="none" stroke="currentColor" stroke-width="0.5" /><path d="M 22.5 35 L 22.5 50 L 50 50 L 50 65" fill="none" stroke="currentColor" stroke-width="0.25" stroke-dasharray="2 2" /><path d="M 77.5 35 L 77.5 50 L 50 50" fill="none" stroke="currentColor" stroke-width="0.25" stroke-dasharray="2 2" /></svg>'
+        'tags' => ['FastAPI', 'React', 'TypeScript', 'Workflow Automation', 'PostgreSQL'],
+        'blueprint_svg' => '<svg viewBox="0 0 100 100" class="w-full h-full text-[#8C6D4F]/30"><rect x="15" y="40" width="20" height="15" fill="none" stroke="currentColor" stroke-width="0.5" /><rect x="45" y="40" width="20" height="15" fill="none" stroke="#D4AF37" stroke-width="0.75" /><rect x="75" y="40" width="15" height="15" fill="none" stroke="currentColor" stroke-width="0.5" /><line x1="35" y1="47.5" x2="45" y2="47.5" stroke="#D4AF37" stroke-width="0.5" /><line x1="65" y1="47.5" x2="75" y2="47.5" stroke="currentColor" stroke-width="0.5" /><text x="15" y="88" class="font-mono text-[6px] fill-[#A8988B]/60">// REGISTRATION_STATE_LOCKS</text></svg>',
+        'github_link' => 'https://github.com/Basharameez/NEC_AI',
+        'demo_link' => null
     ]
 ];
 
@@ -499,65 +514,143 @@ $architectureLayers = [
     </section>
 
     <!-- 5. Works Section (ScrollStack) -->
-    <section id="work" class="relative w-full bg-black py-24 lg:py-32 px-6 sm:px-12 lg:px-20 border-b border-[#8C6D4F]/15">
-        <div class="max-w-7xl mx-auto w-full">
-            <div class="flex items-center justify-between mb-16">
-                <div class="flex items-center space-x-4">
-                    <span class="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37] font-sans">02 / FLAGSHIP PROJECTS</span>
-                    <div class="w-20 h-[1px] bg-[#8C6D4F]/40"></div>
-                </div>
-                <span class="text-[9px] font-mono text-[#8C6D4F] tracking-widest">// STACK RUNWAY LAYER</span>
+    <section id="work" class="relative w-full bg-black text-[#E8DFD8] pt-20 pb-32 px-6 sm:px-12 lg:px-20 border-b border-[#8C6D4F]/15">
+        <div class="absolute top-1/4 left-1/3 w-[36rem] h-[36rem] bg-[#D4AF37]/[0.02] rounded-full blur-[180px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-[#8C6D4F]/[0.02] rounded-full blur-[170px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto w-full relative z-10">
+            <!-- Eyebrow Header -->
+            <div class="flex items-center space-x-4 mb-5">
+                <span class="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37] font-sans">
+                    02 / SELECTED WORK
+                </span>
+                <div class="w-20 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent"></div>
+            </div>
+
+            <!-- Section Headline -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <h2 class="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight uppercase leading-[0.85] select-none font-bold font-display">
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448] drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+                        SELECTED WORKS.
+                    </span>
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A] drop-shadow-[0_8px_25px_rgba(201,158,93,0.35)]">
+                        ENGINEERED VALUE.
+                    </span>
+                </h2>
+
+                <p class="text-xs sm:text-sm font-light text-[#A8988B] max-w-sm mt-4 md:mt-0 leading-relaxed font-sans">
+                    Scroll down to unfold the system architecture cards. Each platform was built to solve complex operational challenges.
+                </p>
             </div>
 
             <!-- Scroll Runway -->
             <div class="scroll-stack-runway flex flex-col gap-[20vh] pb-[10vh]">
-                <?php foreach ($projects as $index => $project): ?>
-                    <div class="scroll-stack-card w-full max-w-5xl mx-auto bg-[#0A0806] border border-[#8C6D4F]/25 rounded-sm p-6 sm:p-10 shadow-[0_30px_60px_rgba(0,0,0,0.9)] overflow-hidden">
-                        <div class="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent"></div>
+                <?php foreach ($projects as $project): ?>
+                    <div class="scroll-stack-card w-full max-w-5xl mx-auto bg-[#0E0C0A] border border-[#8C6D4F]/25 rounded-2xl p-8 sm:p-12 shadow-[0_25px_70px_rgba(0,0,0,0.98)] overflow-hidden relative group">
                         
-                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                            <!-- Left Detail Node -->
-                            <div class="lg:col-span-8 flex flex-col justify-between h-full">
+                        <!-- Top Gold Border Light Flare -->
+                        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent"></div>
+
+                        <!-- Corner Minimal L-Brackets -->
+                        <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#D4AF37]/60 group-hover:border-[#D4AF37] transition-colors"></div>
+                        <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#D4AF37]/60 group-hover:border-[#D4AF37] transition-colors"></div>
+                        <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#D4AF37]/60 group-hover:border-[#D4AF37] transition-colors"></div>
+                        <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#D4AF37]/60 group-hover:border-[#D4AF37] transition-colors"></div>
+
+                        <!-- Big Background Watermark Number -->
+                        <span class="absolute -bottom-6 -right-3 text-8xl sm:text-9xl font-bold text-[#EAD8C7]/5 select-none pointer-events-none leading-none font-display">
+                            <?php echo $project['number']; ?>
+                        </span>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
+                            <!-- Left Column (7 Cols): Content Info -->
+                            <div class="lg:col-span-7 flex flex-col justify-between text-left">
                                 <div>
-                                    <div class="flex items-center space-x-3 text-[10px] font-mono text-[#8C6D4F] tracking-wider mb-4">
-                                        <span class="text-[#D4AF37] font-semibold">MODULE // <?php echo $project['number']; ?></span>
-                                        <span>&bull;</span>
-                                        <span><?php echo $project['category']; ?></span>
+                                    <div class="flex items-center space-x-3 mb-4">
+                                        <span class="text-xs font-mono font-bold text-[#D4AF37]">
+                                            <?php echo $project['number']; ?> //
+                                        </span>
+                                        <span class="text-[10px] font-mono tracking-[0.25em] uppercase text-[#A8988B]">
+                                            <?php echo $project['category']; ?>
+                                        </span>
                                     </div>
-                                    <h3 class="text-3xl sm:text-4xl lg:text-[2.7rem] uppercase font-bold text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] to-[#8E8071] leading-[1.05] tracking-tight font-display mb-6">
+
+                                    <?php if ($project['id'] === 'rtm'): ?>
+                                        <span class="text-[9px] font-mono bg-[#1c1917]/80 text-[#f59e0b] border border-[#f59e0b]/20 px-2.5 py-0.5 rounded-sm mb-3.5 inline-block uppercase">
+                                            PROTOTYPE / EXPERIMENTAL SYSTEM
+                                        </span>
+                                    <?php endif; ?>
+
+                                    <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white mb-4 group-hover:text-[#F7E7C4] transition-colors uppercase leading-[1.0] font-display">
                                         <?php echo $project['title']; ?>
                                     </h3>
+
+                                    <p class="text-xs sm:text-sm md:text-[14px] font-light text-[#BDB0A4] leading-[1.85] tracking-wide mb-8 max-w-2xl font-sans">
+                                        <?php echo $project['description']; ?>
+                                    </p>
                                 </div>
 
-                                <div class="grid grid-cols-3 gap-4 border-t border-b border-[#8C6D4F]/15 py-4 my-6 font-mono text-[9px] text-[#A8988B]">
-                                    <?php foreach ($project['metrics'] as $key => $val): ?>
-                                        <div>
-                                            <div class="text-[8px] text-[#8C6D4F] uppercase tracking-widest"><?php echo $key; ?></div>
-                                            <div class="text-xs text-[#D4AF37] font-semibold mt-1"><?php echo $val; ?></div>
+                                <!-- Tech Stack Pills -->
+                                <div class="flex flex-wrap gap-2 pt-6 border-t border-[#8C6D4F]/20">
+                                    <?php foreach ($project['tags'] as $t): ?>
+                                        <span class="px-3 py-1 text-[10px] font-medium tracking-[0.16em] uppercase rounded-sm border border-[#8C6D4F]/35 bg-[#16120E] text-[#E8D7C5] group-hover:border-[#D4AF37]/50 transition-all duration-300 font-sans"><?php echo $t; ?></span>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+
+                            <!-- Right Column (5 Cols): Metrics & Graphic Visualizer -->
+                            <div class="lg:col-span-5 flex flex-col justify-between h-full space-y-6 lg:pl-6 lg:border-l lg:border-[#8C6D4F]/25 text-left">
+                                <!-- Technical visual area -->
+                                <div class="w-full aspect-video rounded-sm border border-[#8C6D4F]/20 bg-[#050403] p-4 flex items-center justify-center relative overflow-hidden group-hover:border-[#D4AF37]/45 transition-colors">
+                                    <?php echo $project['blueprint_svg']; ?>
+                                </div>
+
+                                <!-- Architecture Metrics -->
+                                <div class="space-y-3">
+                                    <span class="text-[9.5px] font-mono tracking-[0.25em] uppercase text-[#8C6D4F] block mb-2">
+                                        // ARCHITECTURE METRICS
+                                    </span>
+                                    <?php foreach ($project['metrics'] as $m): ?>
+                                        <div class="p-3 rounded-sm border border-[#8C6D4F]/20 bg-[#050403] flex items-center justify-between">
+                                            <span class="text-[10px] font-mono text-[#A8988B]">
+                                                <?php echo $m['label']; ?>
+                                            </span>
+                                            <span class="text-[11px] font-mono font-medium text-[#F7E7C4]">
+                                                <?php echo $m['value']; ?>
+                                            </span>
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
 
-                                <div class="flex flex-wrap gap-2 mb-6">
-                                    <?php foreach ($project['tags'] as $tag): ?>
-                                        <span class="px-2.5 py-0.5 text-[8.5px] font-mono border border-[#8C6D4F]/20 bg-[#0E0C0A] text-[#8C6D4F] rounded-full uppercase tracking-wider"><?php echo $tag; ?></span>
-                                    <?php endforeach; ?>
-                                </div>
-
-                                <div class="flex space-x-4 font-sans">
-                                    <button onclick="openProjectFocus('<?php echo $project['id']; ?>')" class="px-5 py-2.5 bg-transparent border border-[#8C6D4F]/60 hover:border-[#D4AF37] text-[10px] font-medium tracking-[0.2em] text-[#EAD8C7] hover:text-white uppercase transition-colors rounded-sm cursor-pointer">
+                                <!-- Action buttons -->
+                                <div class="flex items-center gap-4 pt-2">
+                                    <button
+                                        onclick="openProjectFocus('<?php echo $project['id']; ?>')"
+                                        class="flex-1 py-3 border border-[#8C6D4F] bg-[#16120E] hover:border-[#D4AF37] hover:bg-[#D4AF37] text-[#EAD8C7] hover:text-black text-[11px] font-medium tracking-[0.24em] uppercase transition-all duration-300 text-center cursor-pointer font-semibold font-sans"
+                                    >
                                         CASE STUDY
                                     </button>
-                                </div>
-                            </div>
 
-                            <!-- Right Blueprint -->
-                            <div class="lg:col-span-4 flex justify-center items-center h-48 sm:h-64 relative border border-[#8C6D4F]/10 rounded-sm bg-black/60 p-4">
-                                <div class="absolute inset-0 tech-grid-pattern opacity-10 pointer-events-none"></div>
-                                <div class="w-full h-full flex items-center justify-center max-w-[200px] relative">
-                                    <?php echo $project['blueprint_svg']; ?>
+                                    <a
+                                        href="<?php echo $project['github_link']; ?>"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="px-4 py-3 border border-[#8C6D4F]/40 bg-[#0A0806] hover:border-[#D4AF37] text-[#BFA895] hover:text-[#FFF5EB] text-[11px] font-medium tracking-[0.2em] uppercase transition-all duration-300 flex items-center justify-center gap-1.5 font-sans"
+                                    >
+                                        REPO ↗
+                                    </a>
+
+                                    <?php if ($project['demo_link']): ?>
+                                        <a
+                                            href="<?php echo $project['demo_link']; ?>"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="px-4 py-3 border border-[#8C6D4F]/40 bg-[#0A0806] hover:border-[#D4AF37] text-[#BFA895] hover:text-[#FFF5EB] text-[11px] font-medium tracking-[0.2em] uppercase transition-all duration-300 flex items-center justify-center gap-1.5 font-sans"
+                                        >
+                                            LIVE ↗
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
-                                <div class="absolute bottom-2 right-3 font-mono text-[7.5px] text-[#8C6D4F]">// SCHEMATIC_FLOW_LAYER</div>
                             </div>
                         </div>
                     </div>
@@ -1142,30 +1235,131 @@ $architectureLayers = [
     </div>
 
     <!-- Project Focus Dossier Modal -->
-    <div id="focus-modal" class="fixed inset-0 z-50 overflow-y-auto bg-black/90 flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
-        <div class="relative w-full max-w-5xl bg-[#0E0C0A] border border-[#8C6D4F]/25 rounded-sm p-6 sm:p-10 shadow-[0_0_80px_rgba(0,0,0,0.95)] max-h-[90vh] overflow-y-auto">
-            <div class="absolute inset-0 tech-grid-pattern opacity-5 pointer-events-none"></div>
+    <div id="focus-modal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-[#0E0C0A] rounded-xl w-full max-w-5xl h-[85vh] flex flex-col shadow-2xl relative border border-[#8C6D4F]/35 overflow-hidden font-sans">
+            
+            <!-- Top Gold Horizon Edge -->
+            <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent"></div>
 
-            <div class="flex justify-between items-center border-b border-[#8C6D4F]/25 pb-4 mb-8">
-                <span id="focus-modal-eyebrow" class="text-[9px] font-mono text-[#D4AF37] tracking-widest">// PROJECT_DOSSIER // MODULE</span>
-                <button onclick="closeProjectFocus()" class="text-[9px] font-mono px-3 py-1 border border-[#8C6D4F]/30 hover:border-[#D4AF37] text-[#A8988B] hover:text-white uppercase transition-colors cursor-pointer">CLOSE</button>
+            <!-- Corner Pins -->
+            <div class="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/50"></div>
+            <div class="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/50"></div>
+
+            <!-- Top Sticky Header -->
+            <div class="bg-black/90 px-6 py-4 border-b border-[#8C6D4F]/20 flex items-center justify-between z-10">
+                <button
+                    onclick="closeProjectFocus()"
+                    class="text-[10px] font-mono tracking-widest flex items-center gap-2 text-[#C4B5A5] hover:text-[#FFF5EB] transition-colors py-2 px-3 border border-[#8C6D4F]/40 rounded-sm cursor-pointer bg-[#0A0806]"
+                >
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    BACK TO WORK
+                </button>
+                
+                <span id="focus-modal-eyebrow" class="text-[9px] font-mono text-[#8C6D4F] tracking-[0.25em] uppercase">
+                    ANALYSIS NODE // RTM
+                </span>
             </div>
 
-            <h3 id="focus-modal-title" class="text-3xl sm:text-4xl font-bold font-display uppercase text-[#FFF5EB] mb-6 leading-none">PROJECT TITLE</h3>
+            <!-- Content body -->
+            <div class="p-6 md:p-10 overflow-y-auto flex-1 flex flex-col gap-8">
+                
+                <!-- Metadata Banner -->
+                <div class="flex flex-col md:flex-row justify-between items-start gap-4 text-left">
+                    <div>
+                        <span class="text-[10px] font-mono tracking-widest text-[#D4AF37] uppercase">
+                            // SYSTEM BLOCK
+                        </span>
+                        
+                        <h2 id="focus-modal-title" class="text-2xl sm:text-3xl text-white mt-1 tracking-tight uppercase font-semibold font-display">
+                            PROJECT TITLE
+                        </h2>
+                        
+                        <p id="focus-modal-category" class="text-[10px] text-[#A8988B] font-mono mt-1 uppercase tracking-widest">
+                            PROJECT CATEGORY
+                        </p>
+                    </div>
+                    
+                    <!-- Tech Tags -->
+                    <div id="focus-modal-tags" class="flex flex-wrap gap-1.5 md:max-w-md">
+                        <!-- Spans generated in JS -->
+                    </div>
+                </div>
 
-            <!-- Tabs -->
-            <div class="flex border-b border-[#8C6D4F]/15 mb-6 text-[10px] font-mono text-[#8C6D4F] tracking-widest uppercase overflow-x-auto">
-                <button onclick="setFocusTab('overview')" id="tab-overview" class="px-4 py-2 border-b border-[#D4AF37] text-[#D4AF37]">OVERVIEW</button>
-                <button onclick="setFocusTab('architecture')" id="tab-architecture" class="px-4 py-2 hover:text-[#FFF5EB]">ARCHITECTURE</button>
-                <button onclick="setFocusTab('engineering')" id="tab-engineering" class="px-4 py-2 hover:text-[#FFF5EB]">ENGINEERING</button>
-                <button onclick="setFocusTab('challenges')" id="tab-challenges" class="px-4 py-2 hover:text-[#FFF5EB]">CHALLENGES</button>
-                <button onclick="setFocusTab('outcome')" id="tab-outcome" class="px-4 py-2 hover:text-[#FFF5EB]">OUTCOME</button>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left side: Interactive Tab list -->
+                    <div class="lg:col-span-4 flex flex-col gap-2">
+                        <button
+                            onclick="setFocusTab('overview')"
+                            id="tab-overview"
+                            class="flex items-center gap-3 px-4 py-3 rounded-sm border transition-all text-left font-mono tracking-wider cursor-pointer bg-[#120F0C] border-[#D4AF37] text-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.12)] font-bold"
+                        >
+                            <svg class="w-3.5 h-3.5 text-[#D4AF37]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect><rect x="6" y="6" width="12" height="10"></rect><line x1="6" y1="18" x2="18" y2="18"></line></svg>
+                            <span class="text-[10px] uppercase">OVERVIEW</span>
+                        </button>
+
+                        <button
+                            onclick="setFocusTab('architecture')"
+                            id="tab-architecture"
+                            class="flex items-center gap-3 px-4 py-3 rounded-sm border transition-all text-left font-mono tracking-wider cursor-pointer bg-[#0A0806] border-[#8C6D4F]/35 text-[#A8988B] hover:border-[#8C6D4F]"
+                        >
+                            <svg class="w-3.5 h-3.5 text-[#8C6D4F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+                            <span class="text-[10px] uppercase">ARCHITECTURE</span>
+                        </button>
+
+                        <button
+                            onclick="setFocusTab('engineering')"
+                            id="tab-engineering"
+                            class="flex items-center gap-3 px-4 py-3 rounded-sm border transition-all text-left font-mono tracking-wider cursor-pointer bg-[#0A0806] border-[#8C6D4F]/35 text-[#A8988B] hover:border-[#8C6D4F]"
+                        >
+                            <svg class="w-3.5 h-3.5 text-[#8C6D4F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                            <span class="text-[10px] uppercase">ENGINEERING</span>
+                        </button>
+
+                        <button
+                            onclick="setFocusTab('challenges')"
+                            id="tab-challenges"
+                            class="flex items-center gap-3 px-4 py-3 rounded-sm border transition-all text-left font-mono tracking-wider cursor-pointer bg-[#0A0806] border-[#8C6D4F]/35 text-[#A8988B] hover:border-[#8C6D4F]"
+                        >
+                            <svg class="w-3.5 h-3.5 text-[#8C6D4F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            <span class="text-[10px] uppercase">CHALLENGES</span>
+                        </button>
+
+                        <button
+                            onclick="setFocusTab('outcome')"
+                            id="tab-outcome"
+                            class="flex items-center gap-3 px-4 py-3 rounded-sm border transition-all text-left font-mono tracking-wider cursor-pointer bg-[#0A0806] border-[#8C6D4F]/35 text-[#A8988B] hover:border-[#8C6D4F]"
+                        >
+                            <svg class="w-3.5 h-3.5 text-[#8C6D4F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            <span class="text-[10px] uppercase">OUTCOME</span>
+                        </button>
+                    </div>
+
+                    <!-- Right side: Active Tab content panel -->
+                    <div class="lg:col-span-8 h-full">
+                        <div class="bg-[#0A0806] border border-[#8C6D4F]/25 rounded-sm p-6 min-h-[300px] h-full flex flex-col justify-between relative group">
+                            
+                            <!-- Micro corner brackets inside content block -->
+                            <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#8C6D4F]/25"></div>
+                            <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#8C6D4F]/25"></div>
+
+                            <div class="flex flex-col gap-4 text-left">
+                                <h4 id="focus-modal-tab-eyebrow" class="text-sm font-semibold text-[#FFF5EB] tracking-wider uppercase font-sans">// PROJECT OVERVIEW</h4>
+                                <p id="focus-modal-content" class="text-sm text-[#B3A497] leading-relaxed font-sans font-light"></p>
+                            </div>
+                            
+                            <!-- Secondary Technical Indicator -->
+                            <div class="border-t border-[#8C6D4F]/15 pt-6 mt-8 flex justify-between items-center text-[8px] font-mono text-[#8C6D4F]">
+                                <span>NODE_COMPILED_TRUE</span>
+                                <span>SYNC_SESSION_SECURE</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
 
-            <!-- Tab Content -->
-            <div id="focus-modal-content" class="text-xs sm:text-sm font-light text-[#B3A497] leading-[1.85] font-sans min-h-[150px]">
-                Tab content load failed.
-            </div>
         </div>
     </div>
 
@@ -1422,38 +1616,68 @@ $architectureLayers = [
             activeProject = projectsData.find(p => p.id === projectId);
             if (!activeProject) return;
 
-            document.getElementById('focus-modal-eyebrow').innerText = `// PROJECT_DOSSIER // MODULE_${activeProject.number}`;
+            document.getElementById('focus-modal-eyebrow').innerText = `ANALYSIS NODE // ${activeProject.id.toUpperCase()}`;
             document.getElementById('focus-modal-title').innerText = activeProject.title;
+            document.getElementById('focus-modal-category').innerText = activeProject.category;
+
+            // Render tags
+            const tagsContainer = document.getElementById('focus-modal-tags');
+            tagsContainer.innerHTML = '';
+            activeProject.tags.forEach(tech => {
+                const span = document.createElement('span');
+                span.className = 'text-[9px] font-mono bg-[#16120E] text-[#E8D7C5] border border-[#8C6D4F]/30 px-2.5 py-1 rounded-sm uppercase tracking-wider';
+                span.textContent = tech;
+                tagsContainer.appendChild(span);
+            });
             
             // Default to overview tab
             setFocusTab('overview');
 
             // Open modal container
+            const focusModal = document.getElementById('focus-modal');
             focusModal.classList.remove('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'hidden';
         }
 
         function setFocusTab(tabName) {
             if (!activeProject) return;
             activeTab = tabName;
 
-            const tabs = ['overview', 'architecture', 'engineering', 'challenges', 'outcome'];
+            const tabs = [
+                { id: 'overview', label: 'OVERVIEW', eyebrow: '// PROJECT OVERVIEW' },
+                { id: 'architecture', label: 'ARCHITECTURE', eyebrow: '// SYSTEM ARCHITECTURE' },
+                { id: 'engineering', label: 'ENGINEERING', eyebrow: '// ENGINEERING DETAILS' },
+                { id: 'challenges', label: 'CHALLENGES', eyebrow: '// TECHNICAL CHALLENGES' },
+                { id: 'outcome', label: 'OUTCOME', eyebrow: '// RUNTIME OUTCOMES' }
+            ];
+
             tabs.forEach(t => {
-                const btn = document.getElementById(`tab-${t}`);
-                if (t === tabName) {
-                    btn.className = "px-4 py-2 border-b border-[#D4AF37] text-[#D4AF37]";
+                const btn = document.getElementById(`tab-${t.id}`);
+                const icon = btn.querySelector('svg');
+                if (t.id === tabName) {
+                    btn.className = "flex items-center gap-3 px-4 py-3 rounded-sm border transition-all text-left font-mono tracking-wider cursor-pointer bg-[#120F0C] border-[#D4AF37] text-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.12)] font-bold";
+                    if (icon) {
+                        icon.setAttribute('class', 'w-3.5 h-3.5 text-[#D4AF37]');
+                    }
                 } else {
-                    btn.className = "px-4 py-2 hover:text-[#FFF5EB] transition-colors";
+                    btn.className = "flex items-center gap-3 px-4 py-3 rounded-sm border transition-all text-left font-mono tracking-wider cursor-pointer bg-[#0A0806] border-[#8C6D4F]/35 text-[#A8988B] hover:border-[#8C6D4F]";
+                    if (icon) {
+                        icon.setAttribute('class', 'w-3.5 h-3.5 text-[#8C6D4F]');
+                    }
                 }
             });
 
             // Set tab content text
-            const contentDiv = document.getElementById('focus-modal-content');
-            contentDiv.innerHTML = `<p class="leading-[1.85]">${activeProject.details[tabName]}</p>`;
+            const tabSpec = tabs.find(t => t.id === tabName);
+            document.getElementById('focus-modal-tab-eyebrow').innerText = tabSpec.eyebrow;
+            document.getElementById('focus-modal-content').innerText = activeProject.details[tabName];
         }
 
         function closeProjectFocus() {
+            const focusModal = document.getElementById('focus-modal');
             focusModal.classList.add('opacity-0', 'pointer-events-none');
             activeProject = null;
+            document.body.style.overflow = 'unset';
         }
 
         // 7. Contact form dispatch logic
