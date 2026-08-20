@@ -633,7 +633,7 @@ $experiences = [
                         </div>
                         <div class="flex items-center space-x-3">
                             <span class="text-[#D4AF37] font-mono uppercase tracking-wider w-20">LOCATION:</span>
-                            <span class="text-[#A8988B]">Bengaluru, India</span>
+                            <span class="text-[#A8988B]">Piduguralla, Andhra Pradesh</span>
                         </div>
                     </div>
                 </div>
