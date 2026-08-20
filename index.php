@@ -685,53 +685,155 @@ $experiences = [
     <!-- ================= MODALS ================= -->
 
     <!-- QuickView Recruiter Dossier Modal -->
-    <div id="quickview-modal" class="fixed inset-0 z-50 overflow-y-auto bg-black/90 flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
-        <div class="relative w-full max-w-4xl bg-[#0E0C0A] border border-[#D4AF37]/40 rounded-sm p-6 sm:p-10 shadow-[0_0_80px_rgba(212,175,55,0.18)] max-h-[90vh] overflow-y-auto font-sans">
-            <div class="absolute inset-0 tech-grid-pattern opacity-5 pointer-events-none"></div>
+    <div id="quickview-modal" class="fixed inset-0 z-50 overflow-y-auto bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-[#0E0C0A] rounded-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl relative border border-[#8C6D4F]/35 flex flex-col print:bg-white print:text-black print:max-h-none print:shadow-none print:border-none print:p-0 font-sans">
             
-            <div class="flex justify-between items-center border-b border-[#8C6D4F]/20 pb-4 mb-8">
-                <span class="text-[10px] font-mono text-[#D4AF37] tracking-widest">// RECRUITER DOSSIER QUICKVIEW</span>
-                <div class="flex space-x-3">
-                    <button onclick="window.print()" class="text-[9px] font-mono px-3 py-1 border border-[#8C6D4F]/30 hover:border-[#D4AF37] text-[#A8988B] hover:text-white uppercase transition-colors">PRINT</button>
-                    <button onclick="toggleQuickView(false)" class="text-[9px] font-mono px-3 py-1 border border-[#8C6D4F]/30 hover:border-[#D4AF37] text-[#A8988B] hover:text-white uppercase transition-colors">CLOSE</button>
+            <!-- Top Gold Horizon Edge -->
+            <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent print:hidden"></div>
+
+            <!-- Corner Pins -->
+            <div class="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/50 print:hidden"></div>
+            <div class="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/50 print:hidden"></div>
+
+            <!-- Header Actions bar (Hidden in print) -->
+            <div class="sticky top-0 bg-black/90 backdrop-blur-md px-6 py-4 border-b border-[#8C6D4F]/20 flex items-center justify-between z-10 print:hidden">
+                <span class="text-[9px] font-mono tracking-widest text-[#8C6D4F] uppercase">
+                    RECRUITER INTERACTION DOSSIER
+                </span>
+                <div class="flex items-center gap-4">
+                    <button onclick="window.print()" class="text-[9px] font-mono tracking-widest px-3 py-1.5 bg-[#14100D] border border-[#8C6D4F]/40 hover:border-[#D4AF37] hover:bg-[#1C1612] text-[#EAD8C7] hover:text-[#FFF5EB] rounded-sm transition-colors cursor-pointer">
+                        PRINT / SAVE PDF
+                    </button>
+                    <button onclick="toggleQuickView(false)" class="p-1 text-[#A8988B] hover:text-[#E8DFD8] transition-colors cursor-pointer">
+                        CLOSE
+                    </button>
                 </div>
             </div>
 
-            <!-- Print content -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-                <div class="md:col-span-8">
-                    <h2 class="text-3xl font-bold font-display uppercase text-[#FFF5EB]">SHAIK RAMEEZ BASHA</h2>
-                    <h3 class="text-sm font-mono text-[#D4AF37] uppercase tracking-widest mt-1 mb-6">AI/ML &amp; GenAI Engineer | Full-Stack Engineer</h3>
-                    
-                    <div class="space-y-6 text-xs text-[#B3A497] leading-relaxed">
-                        <div>
-                            <h4 class="font-mono text-[#8C6D4F] uppercase tracking-wider border-b border-[#8C6D4F]/10 pb-1 mb-2">// SUMMARY</h4>
-                            <p>AI/ML &amp; GenAI Engineer building production-oriented intelligent systems across LLM applications, computer vision, explainable AI, and full-stack environments. Strong foundation in software engineering and algorithms.</p>
-                        </div>
-                        <div>
-                            <h4 class="font-mono text-[#8C6D4F] uppercase tracking-wider border-b border-[#8C6D4F]/10 pb-1 mb-2">// SKILLS SUMMARY</h4>
-                            <p><b>AI/ML &amp; GenAI:</b> Python, PyTorch, Explainable AI, Grad-CAM, RAG Pipelines, ONNX Runtimes, Prompt Engineering.<br><b>Full Stack:</b> React, TypeScript, Vite, Tailwind CSS, FastAPI, PostgreSQL, Supabase, SQL, WebSockets.</p>
-                        </div>
-                    </div>
-                </div>
+            <!-- Printable Resume Document -->
+            <div class="p-8 md:p-12 overflow-y-auto flex-1 text-[#A8988B] print:text-black print:p-0 text-left">
                 
-                <div class="md:col-span-4 border-l border-[#8C6D4F]/10 pl-6 text-xs text-[#A8988B] space-y-4">
-                    <div class="w-32 h-32 rounded-full overflow-hidden border border-[#8C6D4F]/30 mx-auto mb-6">
-                        <img src="mypic.png" alt="Shaik Rameez Basha Portrait" class="w-full h-full object-cover">
-                    </div>
+                <!-- Main Info -->
+                <div class="border-b border-[#8C6D4F]/25 print:border-neutral-950 pb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                     <div>
-                        <div class="text-[#8C6D4F] font-mono text-[9px] uppercase">EMAIL</div>
-                        <div class="text-[#EAD8C7] font-semibold mt-0.5">shaikbashah20@gmail.com</div>
+                        <h1 class="text-3xl md:text-4xl text-white print:text-black tracking-tight font-bold uppercase font-display">
+                            SHAIK RAMEEZ BASHA
+                        </h1>
+                        <p class="text-sm font-mono text-[#D4AF37] print:text-neutral-800 uppercase tracking-widest mt-1">
+                            AI/ML &amp; GenAI Engineer &bull; Full-Stack Engineer
+                        </p>
                     </div>
-                    <div>
-                        <div class="text-[#8C6D4F] font-mono text-[9px] uppercase">LINKEDIN</div>
-                        <div class="text-[#EAD8C7] font-semibold mt-0.5">Shaik Rameez Basha</div>
-                    </div>
-                    <div>
-                        <div class="text-[#8C6D4F] font-mono text-[9px] uppercase">EDUCATION</div>
-                        <div class="text-[#EAD8C7] mt-0.5">B.Tech (CSE-AI) JNTUK<br>CGPA: 7.79 / 10</div>
+                    <div class="text-[10px] font-mono text-[#A8988B] print:text-neutral-700 flex flex-col gap-1.5 md:items-end">
+                        <span>shaikbashah20@gmail.com</span>
+                        <span>linkedin.com/in/shaik-rameezbasha-151740286/</span>
+                        <span>github.com/Basharameez</span>
+                        <span>Piduguralla, Andhra Pradesh, India</span>
                     </div>
                 </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                    <!-- Left side: Skills & Education -->
+                    <div class="md:col-span-1 flex flex-col gap-6">
+                        
+                        <!-- Education -->
+                        <div>
+                            <h2 class="text-[10px] font-mono font-bold tracking-widest text-[#EAD8C7] print:text-black border-b border-[#8C6D4F]/25 print:border-neutral-300 pb-2 uppercase">
+                                Education
+                            </h2>
+                            <div class="mt-3">
+                                <p class="text-sm font-bold text-white print:text-black">B.Tech Computer Science (AI)</p>
+                                <p class="text-xs text-[#A8988B] print:text-neutral-700">Narasaraopeta Engineering College</p>
+                                <p class="text-xs text-[#8C6D4F] print:text-neutral-500 font-mono">2022 &ndash; 2026</p>
+                                <p class="text-xs font-mono font-bold text-[#D4AF37] print:text-black mt-1">CGPA: 7.79 / 10.0</p>
+                            </div>
+                        </div>
+
+                        <!-- Research -->
+                        <div>
+                            <h2 class="text-[10px] font-mono font-bold tracking-widest text-[#EAD8C7] print:text-black border-b border-[#8C6D4F]/25 print:border-neutral-300 pb-2 uppercase">
+                                Research
+                            </h2>
+                            <div class="mt-3">
+                                <p class="text-xs font-bold text-white print:text-black">Explainable Artificial Intelligence</p>
+                                <p class="text-xs text-[#A8988B] print:text-neutral-700 font-sans font-light">Text classification models and gradient hook interpretability.</p>
+                                <p class="text-xs text-[#8C6D4F] font-medium font-mono mt-1">Published in IEEE Xplore, 2026</p>
+                            </div>
+                        </div>
+
+                        <!-- Skills Matrix -->
+                        <div>
+                            <h2 class="text-[10px] font-mono font-bold tracking-widest text-[#EAD8C7] print:text-black border-b border-[#8C6D4F]/25 print:border-neutral-300 pb-2 uppercase">
+                                Skills Matrix
+                            </h2>
+                            <div class="mt-3 flex flex-col gap-3">
+                                <?php foreach ($skills as $category): ?>
+                                    <div>
+                                        <p class="text-[9px] font-mono font-bold text-white print:text-neutral-800 uppercase tracking-wider"><?php echo $category['name']; ?></p>
+                                        <div class="flex flex-wrap gap-1 mt-1.5">
+                                            <?php foreach ($category['skills'] as $skill): ?>
+                                                <span class="text-[9px] font-mono bg-black print:bg-neutral-50 text-[#A8988B] print:text-neutral-800 px-2 py-0.5 rounded-sm border border-[#8C6D4F]/25 print:border-neutral-200"><?php echo $skill; ?></span>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right side: Experience & Projects -->
+                    <div class="md:col-span-2 flex flex-col gap-6">
+                        
+                        <!-- Experience -->
+                        <div>
+                            <h2 class="text-[10px] font-mono font-bold tracking-widest text-[#EAD8C7] print:text-black border-b border-[#8C6D4F]/25 print:border-neutral-300 pb-2 uppercase">
+                                Professional Experience
+                            </h2>
+                            
+                            <div class="mt-3 flex flex-col gap-4">
+                                <?php foreach ($experiences as $exp): ?>
+                                    <div>
+                                        <div class="flex justify-between items-start text-sm">
+                                            <p class="font-bold text-white print:text-black"><?php echo $exp['role']; ?></p>
+                                            <span class="text-xs text-[#8C6D4F] font-mono"><?php echo $exp['period']; ?></span>
+                                        </div>
+                                        <p class="text-xs text-[#D4AF37] print:text-black font-bold font-mono"><?php echo $exp['company']; ?></p>
+                                        <ul class="list-disc list-outside ml-4 mt-1.5 text-xs text-[#A8988B] print:text-neutral-700 flex flex-col gap-1 font-sans font-light">
+                                            <?php foreach ($exp['bullets'] as $bullet): ?>
+                                                <li><?php echo $bullet; ?></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+
+                        <!-- Top Projects -->
+                        <div>
+                            <h2 class="text-[10px] font-mono font-bold tracking-widest text-[#EAD8C7] print:text-black border-b border-[#8C6D4F]/25 print:border-neutral-300 pb-2 uppercase">
+                                Selected Intelligent Systems
+                            </h2>
+                            
+                            <div class="mt-3 flex flex-col gap-4">
+                                <?php foreach ($projects as $project): ?>
+                                    <div>
+                                        <p class="text-sm font-bold text-white print:text-black font-mono">
+                                            <?php echo $project['title']; ?>
+                                        </p>
+                                        <p class="text-xs text-[#A8988B] print:text-neutral-700 mt-1 font-sans font-light">
+                                            <?php echo $project['details']['overview']; ?>
+                                        </p>
+                                        <p class="text-[10px] text-[#D4AF37] print:text-black font-mono font-bold mt-1">
+                                            <?php echo implode(', ', $project['tags']); ?>
+                                        </p>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
