@@ -124,6 +124,72 @@ $experiences = [
         ]
     ]
 ];
+
+$skills = [
+    [
+        'name' => 'AI / ML',
+        'skills' => [
+            'Python',
+            'Artificial Intelligence',
+            'Machine Learning',
+            'Deep Learning',
+            'Computer Vision',
+            'Natural Language Processing',
+            'Transformers',
+            'Explainable AI',
+            'PyTorch',
+            'ONNX',
+            'Grad-CAM'
+        ]
+    ],
+    [
+        'name' => 'GENERATIVE AI',
+        'skills' => [
+            'Generative AI',
+            'LLM Applications',
+            'Prompt Engineering',
+            'Retrieval-Augmented Generation',
+            'Embeddings',
+            'AI Evaluation',
+            'AI Assistants',
+            'Human-in-the-Loop AI',
+            'Intelligent Workflow Systems'
+        ]
+    ],
+    [
+        'name' => 'ENGINEERING',
+        'skills' => [
+            'FastAPI',
+            'React',
+            'TypeScript',
+            'Full-Stack Development',
+            'Backend Development',
+            'Node.js',
+            'Express.js',
+            'REST APIs',
+            'WebSockets',
+            'PostgreSQL',
+            'Supabase',
+            'MongoDB',
+            'Docker',
+            'Authentication',
+            'Testing'
+        ]
+    ],
+    [
+        'name' => 'DATA / ANALYTICS',
+        'skills' => [
+            'Pandas',
+            'Plotly.js',
+            'D3.js',
+            'CSV/Excel Processing',
+            'Data Processing',
+            'Telemetry Processing',
+            'FFT Analysis',
+            'Performance Optimization'
+        ]
+    ]
+];
 ?>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
