@@ -190,6 +190,39 @@ $skills = [
         ]
     ]
 ];
+
+$architectureLayers = [
+    [
+        'id' => 'frontend',
+        'title' => 'FRONTEND / PRESENTATION',
+        'description' => 'Declarative UI interfaces, responsive layouts, data visualization dashboards, and active client-side parsing engines.',
+        'skills' => ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Framer Motion', 'Plotly.js / D3.js']
+    ],
+    [
+        'id' => 'backend',
+        'title' => 'API / BUSINESS SERVICES',
+        'description' => 'RESTful API endpoints, low-latency WebSockets pipelines, async background queue coordination, and authentication gateways.',
+        'skills' => ['Python', 'FastAPI', 'Node.js', 'Express', 'Redis Task Queues', 'JWT Keys']
+    ],
+    [
+        'id' => 'data',
+        'title' => 'DATA / STORAGE ENGINE',
+        'description' => 'Relational data structures, document-store aggregations, caching nodes, and structured dataset preprocessing pipelines.',
+        'skills' => ['PostgreSQL', 'MongoDB', 'Supabase', 'Redis Cache', 'SQL Schemas']
+    ],
+    [
+        'id' => 'ai',
+        'title' => 'AI / ANALYTICS CORE',
+        'description' => 'Explainable AI models, PyTorch neural networks, SHAP features attribution pipelines, and machinery vibration FFT parsers.',
+        'skills' => ['Explainable AI', 'SHAP / LIME', 'PyTorch Models', 'Spectral FFT Analytics']
+    ],
+    [
+        'id' => 'deployment',
+        'title' => 'DEPLOYMENT / SYSTEM OPS',
+        'description' => 'Containerized build packaging, secure isolated sandbox execution clusters, and cloud platform setups.',
+        'skills' => ['Docker Containers', 'CI/CD Pipelines', 'Supabase Edge', 'Cloud Deployment']
+    ]
+];
 ?>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -297,6 +330,8 @@ $skills = [
             <a href="#about" class="hover:text-[#FFF5EB] transition-colors relative group py-1">ABOUT<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#D4AF37]/50 transition-all duration-300 group-hover:w-full"></span></a>
             <a href="#work" class="hover:text-[#FFF5EB] transition-colors relative group py-1">WORK<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#D4AF37]/50 transition-all duration-300 group-hover:w-full"></span></a>
             <a href="#intelligence" class="hover:text-[#FFF5EB] transition-colors relative group py-1">INTELLIGENCE<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#D4AF37]/50 transition-all duration-300 group-hover:w-full"></span></a>
+            <a href="#expertise" class="hover:text-[#FFF5EB] transition-colors relative group py-1">EXPERTISE<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#D4AF37]/50 transition-all duration-300 group-hover:w-full"></span></a>
+            <a href="#architecture" class="hover:text-[#FFF5EB] transition-colors relative group py-1">SYSTEMS<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#D4AF37]/50 transition-all duration-300 group-hover:w-full"></span></a>
             <a href="#experience" class="hover:text-[#FFF5EB] transition-colors relative group py-1">EXPERIENCE<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#D4AF37]/50 transition-all duration-300 group-hover:w-full"></span></a>
             <a href="#research" class="hover:text-[#FFF5EB] transition-colors relative group py-1">RESEARCH<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#D4AF37]/50 transition-all duration-300 group-hover:w-full"></span></a>
         </div>
@@ -574,19 +609,221 @@ $skills = [
                         <h4 class="text-xl font-bold font-display uppercase text-[#D4AF37] mb-4">01 / INPUT TRIAGE (IMAGE &amp; RESOLUTION GATE)</h4>
                         <p class="text-xs font-light text-[#B3A497] leading-[1.85] font-sans">Evaluates patient images client-side before processing, checking resolution, lighting metrics, and image orientation limits to reject corrupt payloads early.</p>
                     </div>
+    </section>
+
+    <!-- 4. Tech Matrix Section -->
+    <section id="expertise" class="relative w-full bg-black text-[#E8DFD8] py-24 lg:py-32 px-6 sm:px-12 lg:px-20 overflow-hidden border-b border-[#8C6D4F]/15">
+        <div class="absolute inset-0 tech-grid-pattern opacity-[0.08] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto w-full relative z-10 text-left mb-16">
+            <div class="flex items-center space-x-4 mb-5">
+                <span class="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37] font-sans">
+                    04 / TECH MATRIX
+                </span>
+                <div class="w-20 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent"></div>
+            </div>
+            
+            <h2 class="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight uppercase leading-[0.85] select-none font-bold font-display">
+                <span class="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448] drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+                    ARCHITECTURAL MASTERY.
+                </span>
+                <span class="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A] drop-shadow-[0_8px_25px_rgba(201,158,93,0.35)]">
+                    PRECISION APPLIED.
+                </span>
+            </h2>
+        </div>
+
+        <div class="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Left Side: Skills Catalog Categories -->
+            <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                <?php foreach ($skills as $category): ?>
+                    <div class="bg-[#0E0C0A] border border-[#8C6D4F]/25 rounded-sm p-6 flex flex-col gap-4 relative group">
+                        <!-- Corner brackets -->
+                        <div class="absolute top-0 left-0 w-2.5 h-2.5 border-t border-l border-[#8C6D4F]/30"></div>
+                        <div class="absolute bottom-0 right-0 w-2.5 h-2.5 border-b border-r border-[#8C6D4F]/30"></div>
+
+                        <h3 class="text-xs font-semibold tracking-widest text-[#EAD8C7] uppercase border-b border-[#8C6D4F]/20 pb-2.5 flex items-center gap-2 font-sans">
+                            <svg class="w-3.5 h-3.5 text-[#D4AF37]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            <?php echo $category['name']; ?>
+                        </h3>
+                        
+                        <div class="flex flex-wrap gap-2">
+                            <?php foreach ($category['skills'] as $skill): ?>
+                                <button
+                                    onmouseenter="hoverSkill('<?php echo htmlspecialchars($skill); ?>')"
+                                    onmouseleave="unhoverSkill()"
+                                    class="skill-badge text-[10px] font-mono px-3 py-1.5 rounded-sm border bg-black/40 border-[#8C6D4F]/35 text-[#A8988B] hover:border-[#8C6D4F] hover:text-white transition-all duration-200 cursor-crosshair"
+                                    data-skill="<?php echo htmlspecialchars($skill); ?>"
+                                >
+                                    <?php echo $skill; ?>
+                                </button>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <!-- Right Side: Dynamic Project Linkage Dashboard -->
+            <div class="lg:col-span-4 lg:sticky lg:top-28 text-left">
+                <div class="bg-[#0E0C0A] border border-[#8C6D4F]/25 rounded-sm p-6 flex flex-col gap-6 relative">
+                    <!-- Corner brackets -->
+                    <div class="absolute top-0 left-0 w-2.5 h-2.5 border-t border-l border-[#D4AF37]/50"></div>
+                    <div class="absolute bottom-0 right-0 w-2.5 h-2.5 border-b border-r border-[#D4AF37]/50"></div>
+
+                    <div>
+                        <h3 class="text-xs font-semibold tracking-widest text-[#EAD8C7] uppercase pb-2.5 border-b border-[#8C6D4F]/20 flex items-center gap-2 font-sans">
+                            <svg class="w-3.5 h-3.5 text-[#D4AF37]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                            RELATIONSHIP LINKAGE
+                        </h3>
+                        <p class="text-[11px] text-[#A8988B] leading-relaxed mt-3 font-light font-sans">
+                            Hover over a technology badge on the left. The project slots below will dynamically highlight to reveal where that specific asset was deployed.
+                        </p>
+                    </div>
+
+                    <!-- List of projects to highlight -->
+                    <div class="flex flex-col gap-3">
+                        <?php foreach ($projects as $project): ?>
+                            <div
+                                id="linkage-project-<?php echo $project['id']; ?>"
+                                class="linkage-project-card p-3 rounded-sm border border-[#8C6D4F]/25 bg-[#050403] transition-all duration-300"
+                                data-techs="<?php echo htmlspecialchars(implode(',', $project['tags'])); ?>"
+                            >
+                                <div class="flex justify-between items-center">
+                                    <span class="text-[10px] font-mono font-bold uppercase tracking-wider"><?php echo $project['title']; ?></span>
+                                    <span class="linkage-badge hidden text-[8px] font-mono font-bold text-[#D4AF37] bg-[#D4AF37]/10 border border-[#D4AF37]/20 px-1.5 py-0.5 rounded uppercase animate-pulse">
+                                        LINKED
+                                    </span>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <!-- Trace status indicators -->
+                    <div class="text-[9.5px] font-mono text-[#8C6D4F] flex items-center gap-2 border-t border-[#8C6D4F]/15 pt-4">
+                        <svg id="tracing-spinner" class="w-3.5 h-3.5 text-[#D4AF37]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <span id="tracing-status">STATUS: WAITING FOR HOVER</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 7. Experience & Telemetry Section -->
+    <!-- 5. System Architectures Section -->
+    <section id="architecture" class="relative w-full bg-black text-[#E8DFD8] py-24 lg:py-32 px-6 sm:px-12 lg:px-20 overflow-hidden border-b border-[#8C6D4F]/15">
+        <div class="absolute inset-0 tech-grid-pattern opacity-[0.08] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto w-full relative z-10 text-left mb-16">
+            <div class="flex items-center space-x-4 mb-5">
+                <span class="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37] font-sans">
+                    05 / SYSTEM ARCHITECTURES
+                </span>
+                <div class="w-20 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent"></div>
+            </div>
+            
+            <h2 class="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight uppercase leading-[0.85] select-none font-bold font-display">
+                <span class="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448] drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+                    SYSTEM ARCHITECTURES.
+                </span>
+                <span class="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A] drop-shadow-[0_8px_25px_rgba(201,158,93,0.35)]">
+                    HOW I CONSTRUCT.
+                </span>
+            </h2>
+        </div>
+
+        <div class="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Left Side: Clickable Stack of Layers -->
+            <div class="lg:col-span-6 flex flex-col gap-3 text-left">
+                <?php foreach ($architectureLayers as $layer): ?>
+                    <button
+                        onclick="setArchitectureLayer('<?php echo $layer['id']; ?>')"
+                        id="arch-btn-<?php echo $layer['id']; ?>"
+                        class="arch-layer-btn p-4 text-left transition-all duration-300 rounded-sm border flex items-center justify-between cursor-pointer relative group <?php echo $layer['id'] === 'frontend' ? 'border-[#D4AF37] bg-[#120F0C] shadow-[0_0_15px_rgba(212,175,55,0.12)]' : 'bg-[#0E0C0A] border-[#8C6D4F]/25 hover:border-[#8C6D4F]'; ?>"
+                    >
+                        <!-- Micro pins -->
+                        <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#8C6D4F]/30"></div>
+                        <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#8C6D4F]/30"></div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-8 h-8 rounded-sm flex items-center justify-center bg-black border border-[#8C6D4F]/30">
+                                <?php if ($layer['id'] === 'frontend'): ?>
+                                    <svg class="w-4 h-4 text-[#D4AF37]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                                <?php elseif ($layer['id'] === 'backend'): ?>
+                                    <svg class="w-4 h-4 text-[#D4AF37]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                                <?php elseif ($layer['id'] === 'data'): ?>
+                                    <svg class="w-4 h-4 text-[#D4AF37]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
+                                <?php elseif ($layer['id'] === 'ai'): ?>
+                                    <svg class="w-4 h-4 text-[#D4AF37]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+                                <?php else: ?>
+                                    <svg class="w-4 h-4 text-[#D4AF37]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                <?php endif; ?>
+                            </div>
+                            <div>
+                                <h3 class="text-xs font-semibold tracking-widest text-white uppercase group-hover:text-[#F7E7C4] transition-colors font-sans">
+                                    <?php echo $layer['title']; ?>
+                                </h3>
+                                <p class="text-[9px] text-[#A8988B] mt-0.5 uppercase tracking-widest font-mono">
+                                    LAYER: <?php echo $layer['id']; ?>
+                                </p>
+                            </div>
+                        </div>
+                        <svg class="w-4 h-4 text-[#8C6D4F] arch-arrow <?php echo $layer['id'] === 'frontend' ? 'hidden' : ''; ?>" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                <?php endforeach; ?>
+            </div>
+
+            <!-- Right Side: Active layer specifications -->
+            <div class="lg:col-span-6 h-full text-left">
+                <div class="bg-[#0E0C0A] border border-[#8C6D4F]/25 rounded-sm p-6 min-h-[340px] h-full flex flex-col justify-between relative">
+                    <!-- Corner pins -->
+                    <div class="absolute top-0 left-0 w-2.5 h-2.5 border-t border-l border-[#D4AF37]/50"></div>
+                    <div class="absolute bottom-0 right-0 w-2.5 h-2.5 border-b border-r border-[#D4AF37]/50"></div>
+
+                    <div class="flex flex-col gap-4">
+                        <span class="text-[9px] font-mono font-bold text-[#D4AF37] tracking-widest uppercase border-b border-[#8C6D4F]/20 pb-2.5 block">
+                            ACTIVE COMPLIANCE REPORT // LAYER_SPEC
+                        </span>
+                        
+                        <h3 id="arch-spec-title" class="text-lg text-white tracking-wider uppercase font-semibold font-display">
+                            FRONTEND / PRESENTATION
+                        </h3>
+                        
+                        <p id="arch-spec-desc" class="text-xs text-[#B3A497] leading-relaxed font-sans font-light">
+                            Declarative UI interfaces, responsive layouts, data visualization dashboards, and active client-side parsing engines.
+                        </p>
+
+                        <!-- Technologies mapped inside the layer -->
+                        <div class="mt-4">
+                            <h4 class="text-[9px] font-mono font-bold text-[#8C6D4F] tracking-widest uppercase mb-3">
+                                INTEGRATED TOOLSETS
+                            </h4>
+                            <div id="arch-spec-skills" class="flex flex-wrap gap-2">
+                                <span class="text-[10px] font-mono bg-black border border-[#8C6D4F]/25 text-[#EAD8C7] px-2.5 py-1 rounded-sm uppercase tracking-wider">React</span>
+                                <span class="text-[10px] font-mono bg-black border border-[#8C6D4F]/25 text-[#EAD8C7] px-2.5 py-1 rounded-sm uppercase tracking-wider">TypeScript</span>
+                                <span class="text-[10px] font-mono bg-black border border-[#8C6D4F]/25 text-[#EAD8C7] px-2.5 py-1 rounded-sm uppercase tracking-wider">Tailwind CSS</span>
+                                <span class="text-[10px] font-mono bg-black border border-[#8C6D4F]/25 text-[#EAD8C7] px-2.5 py-1 rounded-sm uppercase tracking-wider">Vite</span>
+                                <span class="text-[10px] font-mono bg-black border border-[#8C6D4F]/25 text-[#EAD8C7] px-2.5 py-1 rounded-sm uppercase tracking-wider">Framer Motion</span>
+                                <span class="text-[10px] font-mono bg-black border border-[#8C6D4F]/25 text-[#EAD8C7] px-2.5 py-1 rounded-sm uppercase tracking-wider">Plotly.js / D3.js</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-[8px] font-mono text-[#8C6D4F]/60 border-t border-[#8C6D4F]/15 pt-4 mt-6 flex justify-between">
+                        <span id="arch-spec-module">MODULE ID: Layer-FRONTEND</span>
+                        <span>STANDARDS CODE: POSIX_COMPLIANT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Experience & Telemetry Section -->
     <section id="experience" class="relative w-full bg-black py-24 px-6 sm:px-12 lg:px-20 border-b border-[#8C6D4F]/15">
         <div class="max-w-7xl mx-auto w-full">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                 <!-- Left Column: Chronology -->
                 <div class="lg:col-span-6">
                     <div class="flex items-center space-x-4 mb-16">
-                        <span class="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37] font-sans">04 / EXPERIENCE CHRONOLOGY</span>
+                        <span class="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37] font-sans">06 / EXPERIENCE CHRONOLOGY</span>
                         <div class="w-20 h-[1px] bg-[#8C6D4F]/40"></div>
                     </div>
 
@@ -636,11 +873,11 @@ $skills = [
         </div>
     </section>
 
-    <!-- 8. Research Section -->
+    <!-- 7. Research Section -->
     <section id="research" class="relative w-full bg-black py-24 px-6 sm:px-12 lg:px-20 border-b border-[#8C6D4F]/15">
         <div class="max-w-7xl mx-auto w-full">
             <div class="flex items-center space-x-4 mb-16">
-                <span class="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37] font-sans">05 / SCHOLARLY reprints</span>
+                <span class="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37] font-sans">07 / SCHOLARLY reprints</span>
                 <div class="w-20 h-[1px] bg-[#8C6D4F]/40"></div>
             </div>
 
@@ -672,11 +909,11 @@ $skills = [
         </div>
     </section>
 
-    <!-- 9. Contact Section -->
+    <!-- 8. Contact Section -->
     <section id="contact" class="relative w-full bg-black py-24 px-6 sm:px-12 lg:px-20 border-b border-[#8C6D4F]/15">
         <div class="max-w-7xl mx-auto w-full">
             <div class="flex items-center space-x-4 mb-16">
-                <span class="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37] font-sans">06 / TELEMETRY DISPATCH</span>
+                <span class="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37] font-sans">08 / TELEMETRY DISPATCH</span>
                 <div class="w-20 h-[1px] bg-[#8C6D4F]/40"></div>
             </div>
 
@@ -1224,6 +1461,94 @@ $skills = [
             e.preventDefault();
             document.getElementById('contact-form').classList.add('hidden');
             document.getElementById('form-success').classList.remove('hidden');
+        }
+
+        // 8. Systems Architecture Layer switching
+        const architectureLayers = <?php echo json_encode($architectureLayers); ?>;
+
+        function setArchitectureLayer(layerId) {
+            const layer = architectureLayers.find(l => l.id === layerId);
+            if (!layer) return;
+
+            document.querySelectorAll('.arch-layer-btn').forEach(btn => {
+                if (btn.id === `arch-btn-${layerId}`) {
+                    btn.className = 'arch-layer-btn p-4 text-left transition-all duration-300 rounded-sm border flex items-center justify-between cursor-pointer relative group border-[#D4AF37] bg-[#120F0C] shadow-[0_0_15px_rgba(212,175,55,0.12)]';
+                    const arrow = btn.querySelector('.arch-arrow');
+                    if (arrow) arrow.classList.add('hidden');
+                } else {
+                    btn.className = 'arch-layer-btn p-4 text-left transition-all duration-300 rounded-sm border flex items-center justify-between cursor-pointer relative group bg-[#0E0C0A] border-[#8C6D4F]/25 hover:border-[#8C6D4F]';
+                    const arrow = btn.querySelector('.arch-arrow');
+                    if (arrow) arrow.classList.remove('hidden');
+                }
+            });
+
+            document.getElementById('arch-spec-title').textContent = layer.title;
+            document.getElementById('arch-spec-desc').textContent = layer.description;
+            document.getElementById('arch-spec-module').textContent = `MODULE ID: Layer-${layerId.toUpperCase()}`;
+
+            const skillsContainer = document.getElementById('arch-spec-skills');
+            skillsContainer.innerHTML = '';
+            layer.skills.forEach(skill => {
+                const span = document.createElement('span');
+                span.className = 'text-[10px] font-mono bg-black border border-[#8C6D4F]/25 text-[#EAD8C7] px-2.5 py-1 rounded-sm uppercase tracking-wider';
+                span.textContent = skill;
+                skillsContainer.appendChild(span);
+            });
+        }
+
+        // 9. Tech Matrix Hover Relationship Linkages
+        function hoverSkill(skillName) {
+            document.querySelectorAll('.skill-badge').forEach(badge => {
+                if (badge.getAttribute('data-skill') === skillName) {
+                    badge.className = 'skill-badge text-[10px] font-mono px-3 py-1.5 rounded-sm border transition-all duration-200 cursor-crosshair bg-[#D4AF37]/10 border-[#D4AF37] text-[#D4AF37] shadow-[0_0_12px_rgba(212,175,55,0.15)] font-bold';
+                } else {
+                    badge.className = 'skill-badge text-[10px] font-mono px-3 py-1.5 rounded-sm border transition-all duration-200 cursor-crosshair bg-black/40 border-[#8C6D4F]/35 text-[#A8988B] hover:border-[#8C6D4F] hover:text-white';
+                }
+            });
+
+            document.querySelectorAll('.linkage-project-card').forEach(card => {
+                const techs = card.getAttribute('data-techs').toLowerCase().split(',');
+                const normalizedSkill = skillName.toLowerCase();
+
+                let isRelated = techs.some(tech => 
+                    tech === normalizedSkill || 
+                    tech.includes(normalizedSkill) || 
+                    normalizedSkill.includes(tech)
+                );
+
+                if (normalizedSkill === 'nlp' && techs.includes('explainable ai')) {
+                    isRelated = true;
+                }
+
+                const badge = card.querySelector('.linkage-badge');
+                if (isRelated) {
+                    card.className = 'linkage-project-card p-3 rounded-sm border transition-all duration-300 border-[#D4AF37] bg-[#D4AF37]/5 text-white';
+                    if (badge) badge.classList.remove('hidden');
+                } else {
+                    card.className = 'linkage-project-card p-3 rounded-sm border transition-all duration-300 border-[#8C6D4F]/10 bg-transparent opacity-20';
+                    if (badge) badge.classList.add('hidden');
+                }
+            });
+
+            document.getElementById('tracing-status').textContent = `TRACING: "${skillName.toUpperCase()}"...`;
+            const spinner = document.getElementById('tracing-spinner');
+            if (spinner) spinner.classList.add('animate-spin');
+        }
+
+        function unhoverSkill() {
+            document.querySelectorAll('.skill-badge').forEach(badge => {
+                badge.className = 'skill-badge text-[10px] font-mono px-3 py-1.5 rounded-sm border transition-all duration-200 cursor-crosshair bg-black/40 border-[#8C6D4F]/35 text-[#A8988B] hover:border-[#8C6D4F] hover:text-white';
+            });
+
+            document.querySelectorAll('.linkage-project-card').forEach(card => {
+                card.className = 'linkage-project-card p-3 rounded-sm border border-[#8C6D4F]/25 bg-[#050403] transition-all duration-300';
+                const badge = card.querySelector('.linkage-badge');
+                if (badge) badge.classList.add('hidden');
+            });
+
+            document.getElementById('tracing-status').textContent = 'STATUS: WAITING FOR HOVER';
+            const spinner = document.getElementById('tracing-spinner');
+            if (spinner) spinner.classList.remove('animate-spin');
         }
     </script>
 </body>
